@@ -1,0 +1,103 @@
+Building configuration...
+
+Current configuration : 1176 bytes
+!
+! Last configuration change at 12:55:56 UTC Fri Feb 12 2021 by cisco
+!
+version 15.4
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no platform punt-keepalive disable-kernel-core
+platform console virtual
+!
+hostname R1c
+!
+boot-start-marker
+boot-end-marker
+!
+!
+enable secret 5 $1$W7JX$LPMi37KlYyDLnTgCxNCXD.
+!
+no aaa new-model
+!
+!
+!
+!
+!
+!
+!
+
+
+ip domain name cisco.labs
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+subscriber templating
+multilink bundle-name authenticated
+!
+!
+license udi pid CSR1000V sn 9WNZ23VEEIF
+!
+username cisco password 0 cisco123!
+!
+redundancy
+ mode none
+!
+!
+!
+ip ssh version 2
+!
+!
+!
+!
+interface GigabitEthernet1
+ ip address 192.168.2.100 255.255.255.0
+ negotiation auto
+!
+interface GigabitEthernet2
+ ip address 10.0.0.1 255.255.0.0
+ negotiation auto
+!
+interface GigabitEthernet3
+ no ip address
+ shutdown
+ negotiation auto
+!
+!
+virtual-service csr_mgmt
+!
+ip forward-protocol nd
+!
+no ip http server
+no ip http secure-server
+!
+!
+!
+!
+control-plane
+!
+!
+line con 0
+ stopbits 1
+line aux 0
+ stopbits 1
+line vty 0
+ login local
+ transport input ssh
+line vty 1
+ login local
+ length 0
+ transport input ssh
+line vty 2 4
+ login local
+ transport input ssh
+!
+!
+end

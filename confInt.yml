@@ -1,0 +1,31 @@
+---
+
+- name: Verbinding router crs1000v
+  hosts: Router
+  gather_facts: false
+  connection: ansible.netcommon.network_cli
+
+  tasks:
+    - name: IP adres int gi2
+      ios_config:
+         lines: 
+           - ip add 10.0.0.1 255.255.0.0
+           - no shutdown
+         parents: int gi2
+      
+
+    - name: run show version on the routers
+      ios_command:
+        commands: show ip int brief
+      register: output
+
+    - name: config opslaan
+      ios_config:
+         lines:
+           - copy running config startup-config
+
+      
+    - name: print output
+      debug:
+        var: output.stdout_lines
+           

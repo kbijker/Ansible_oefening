@@ -1,0 +1,32 @@
+---
+
+- name: Verbinding router crs1000v
+  hosts: Router
+  gather_facts: false
+  connection: ansible.netcommon.network_cli
+
+  tasks:
+    - name: IP adres int gi2
+      ios_config:
+         lines: 
+           - ip add 10.0.0.1 255.255.0.0
+           - no shutdown
+         parents: int gi2
+      
+
+    - name: show running-conf
+      ios_command:
+        commands: 
+         - show running-config
+      register: config
+
+    - name: config opslaan
+      copy:
+        content: "{{ config.stdout[0] }}"
+        dest: "/etc/ansible/show_run_{{ inventory_hostname }}.txt"
+
+      
+    - name: print output
+      debug:
+        var: output.stdout_lines
+           
