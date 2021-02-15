@@ -1,8 +1,8 @@
 Building configuration...
 
-Current configuration : 1176 bytes
+Current configuration : 1178 bytes
 !
-! Last configuration change at 12:55:56 UTC Fri Feb 12 2021 by cisco
+! Last configuration change at 15:02:19 UTC Fri Feb 12 2021 by cisco
 !
 version 15.4
 service timestamps debug datetime msec
@@ -58,7 +58,7 @@ ip ssh version 2
 !
 !
 interface GigabitEthernet1
- ip address 192.168.2.100 255.255.255.0
+ ip address 192.168.178.100 255.255.255.0
  negotiation auto
 !
 interface GigabitEthernet2
