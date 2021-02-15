@@ -1,5 +1,0 @@
----
--name: Save
-  ios_config:
-  authorize:yes
-  save:yes
